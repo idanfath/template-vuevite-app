@@ -3,7 +3,6 @@
         <router-view></router-view>
         you are inside the admin shell
         {{this.$route.name}}
-
     </div>
 </template>
 

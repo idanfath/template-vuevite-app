@@ -5,8 +5,7 @@ import Components from 'unplugin-vue-components/vite'
 import path from 'path'
 import Icons from 'unplugin-icons/vite'
 import IconsResolver from 'unplugin-icons/resolver'
-// import VueRouter from 'unplugin-vue-router/vite'
-// import { VueRouterAutoImports } from 'unplugin-vue-router'
+import {PrimeVueResolver} from 'unplugin-vue-components/resolvers'
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -16,10 +15,6 @@ export default defineConfig({
     }
   },
   plugins: [
-    // VueRouter({
-    //   routesFolder: 'src/views',
-    //   extensions: ['.vue'],
-    // }),
     vue(),
     Icons({
       autoInstall: true,
@@ -29,25 +24,24 @@ export default defineConfig({
       extensions: ['vue'],
       directoryAsNamespace: true,
       resolvers: [
-        IconsResolver(
-          {
-            componentPrefix: 'i', // default
-          }
+        PrimeVueResolver(),
+        IconsResolver({
+          componentPrefix: 'i', // default
+        }
         ),
       ],
     }),
     AutoImport({
       include: [
+        /\.[tj]sx?$/,
         /\.vue$/,
         /\.vue\?vue/, // .vue
       ],
-      dirs: ['./src'],
+      dirs: ['./src',],
       imports: [
-        // VueRouterAutoImports,
         'vue',
         'vue-router',
         {
-          // 'vue-router/auto': ['useLink', 'definePage'],
           '@vueuse/core': ['useStorage', 'useWindowSize'],
           'swiper/vue': ['Swiper', 'SwiperSlide'],
           '@vueuse/router': ['useRouteParams'],
@@ -56,17 +50,10 @@ export default defineConfig({
           '@vuelidate/core': [['default', 'useValidate']],
           '@vuelidate/validators': ['email', 'required', 'minLength', 'maxLength', 'sameAs', 'requiredIf', 'requiredUnless', 'minValue', 'maxValue', 'alpha', 'alphaNum', 'numeric', 'integer', 'between', 'decimal', 'and', 'or', 'not', 'helpers'],
           '@iconify/vue': ['Icon'],
+          'swiper/modules': ['Navigation', 'Pagination', 'Scrollbar', 'A11y', 'Autoplay', 'EffectFade', 'EffectCube', 'EffectFlip', 'EffectCoverflow', 'EffectCreative', 'EffectCards', 'EffectLazy', 'Thumbs'],
         }
       ]
     }),
   ],
-  css: {
-    postcss: {
-      plugins: [
-        require('swiper/css'),
-        // other CSS imports...
-      ],
-    },
-  },
 })
 

@@ -2,8 +2,9 @@
 </script>
 
 <template>
+  <ScrollTop/>
   <div>
-    <router-view />
+    <router-view/>
   </div>
 </template>
 

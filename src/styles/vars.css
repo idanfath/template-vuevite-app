@@ -1,9 +1,13 @@
 :root {
-    --primary: #0070f3;
-    --secondary: #ff0080;
-    --background: #1a1a1a;
+    --background: #131313;
     --text: white;
     --error: #ef3737;
     --confirm: #30cd3b;
-    --grey: #333;
+    --grey: #343434;
+}
+
+.dark-mode {
+    --background: #f0f0f0;
+    --text: #131313;
+    --grey: #eaeaea;
 }

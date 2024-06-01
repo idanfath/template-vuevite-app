@@ -1,21 +1,14 @@
 <script setup>
-
 </script>
 
 <template>
   <div>
     <h1 v-motion-fade>Home View</h1>
-    <x-button text="testing" @myEvent="testing"></x-button>
-    <ul v-auto-animate>
-      <li v-for="(item, index) in theItems" :key="item" class="item">
-        <div class="numbers">
-          {{ item }}
-        </div>
-        <div @click="goUp(index)">up</div>
-        <div @click="goDown(index)">down</div>
-      </li>
-    </ul>
+    <Message severity="success">Success Message</Message>
+    <Button @click="toggleDarkMode()"><i-mdi-account-circle /></Button>
   </div>
+  <div style="height: 100vh;"></div>
+  <div style="height: 100vh;"></div>
 </template>
 
 <script>
@@ -24,25 +17,16 @@
     setup() {
       const route = useRoute();
       const params = route.params;
-
-      const theItems = useStorage('theItems', Array.from({ length: 10 }, (_, i) => i + 1))
-
-      function goUp(index) {
-        if (index > 0) {
-          [theItems.value[index], theItems.value[index - 1]] = [theItems.value[index - 1], theItems.value[index]];
-        }
+      const isDarkMode = useStorage('dark-mode', false);
+      const toggleDarkMode = () => {
+        isDarkMode.value = !isDarkMode.value;
+        document.documentElement.classList.toggle('dark-mode', isDarkMode.value);
+      };
+      if (isDarkMode.value) {
+        document.documentElement.classList.add('dark-mode');
       }
-
-      function goDown(index) {
-        if (index < this.theItems.length - 1) {
-          [theItems.value[index], theItems.value[index + 1]] = [theItems.value[index + 1], theItems.value[index]];
-        }
-      }
-
       return {
-        theItems,
-        goUp,
-        goDown,
+        params, route, toggleDarkMode
       }
     },
     data() {
@@ -146,8 +130,4 @@
 </script>
 
 <style>
-  .item {
-    display: flex;
-    justify-content: space-between;
-  }
 </style>

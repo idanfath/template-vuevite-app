@@ -2,8 +2,6 @@
 // name: "myFunct"
 // version: "1.0.0"
 
-import { computed } from "vue";
-
 export default {
     install: (app) => {
         app.mixin({
