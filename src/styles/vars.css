@@ -1,0 +1,9 @@
+:root {
+    --primary: #0070f3;
+    --secondary: #ff0080;
+    --background: #1a1a1a;
+    --text: white;
+    --error: #ef3737;
+    --confirm: #30cd3b;
+    --grey: #333;
+}
